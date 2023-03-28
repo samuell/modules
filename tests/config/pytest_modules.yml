@@ -1527,6 +1527,10 @@ graphtyper/vcfconcatenate:
   - modules/nf-core/graphtyper/vcfconcatenate/**
   - tests/modules/nf-core/graphtyper/vcfconcatenate/**
 
+gridss/generateponbedpe:
+  - modules/nf-core/gridss/generateponbedpe/**
+  - tests/modules/nf-core/gridss/generateponbedpe/**
+
 gridss/gridss:
   - modules/nf-core/gridss/gridss/**
   - tests/modules/nf-core/gridss/gridss/**
@@ -3545,10 +3549,6 @@ whamg:
   - modules/nf-core/whamg/**
   - tests/modules/nf-core/whamg/**
 
-wisecondorx/convert:
-  - modules/nf-core/wisecondorx/convert/**
-  - tests/modules/nf-core/wisecondorx/convert/**
-
 windowmasker/mk_counts:
   - modules/nf-core/windowmasker/mk_counts/**
   - tests/modules/windowmasker/mk_counts/**
@@ -3556,6 +3556,10 @@ windowmasker/mk_counts:
 windowmasker/ustat:
   - modules/nf-core/windowmasker/ustat/**
   - tests/modules/windowmasker/ustat/**
+
+wisecondorx/convert:
+  - modules/nf-core/wisecondorx/convert/**
+  - tests/modules/nf-core/wisecondorx/convert/**
 
 yahs:
   - modules/nf-core/yahs/**

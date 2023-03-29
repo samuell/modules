@@ -17,5 +17,5 @@ workflow test_gridss_generateponbedpe {
 
     BWA_INDEX( fasta )
     GRIDSS_GRIDSS( input, fasta, fasta_fai, BWA_INDEX.out.index  )
-    GRIDSS_GENERATEPONBEDPE ( GRIDSS_GRIDSS.out.vcf, [], [], fasta, fasta_fai, BWA_INDEX.out.index )
+    GRIDSS_GENERATEPONBEDPE ( GRIDSS_GRIDSS.out.vcf, [[],[]], [[],[]], fasta, fasta_fai, BWA_INDEX.out.index )
 }

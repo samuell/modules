@@ -12,9 +12,9 @@ process GRIDSS_GENERATEPONBEDPE {
     tuple val(meta), path(vcf)
     tuple val(meta), path(bed)
     tuple val(meta), path(bedpe)
-    tuple val(id1), path(fasta)
-    tuple val(id2), path(fasta_fai)
-    tuple val(id3), path(bwa_index)
+    tuple val(id), path(fasta)
+    tuple val(id), path(fasta_fai)
+    tuple val(id), path(bwa_index)
 
     output:
     tuple val(meta), path("*_pon_breakpoint.bedpe")   , emit: pbed

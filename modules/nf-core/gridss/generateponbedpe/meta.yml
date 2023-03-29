@@ -20,7 +20,12 @@ input:
       type: map
       description: |
         Groovy Map containing sample information
-        e.g. [ id:'test', single_end:false ]
+        e.g. [ id:'test']
+  - id:
+      type: map
+      description: |
+        Groovy Map containing reference file information
+        e.g. [ id:'fasta' ]
   - vcf:
       type: file
       description: OPTIONAL - VCF file

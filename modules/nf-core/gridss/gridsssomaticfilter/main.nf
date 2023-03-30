@@ -1,7 +1,7 @@
 
 process GRIDSS_GRIDSSSOMATICFILTER {
     tag "$meta.id"
-    label 'process_single'
+    label 'process_medium'
 
     conda "bioconda::gridss=2.13.2"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -10,8 +10,11 @@ process GRIDSS_GRIDSSSOMATICFILTER {
 
     input:
     tuple val(meta), path(vcf)
-    tuple val(meta), path(pondir)
+    tuple val(meta5), path(pondir)
     tuple val(meta2), path(rds)
+    tuple val(meta3), path(fasta)
+    tuple val(meta3), path(fai)
+    tuple val(meta4), path(bwa_index)
 
     output:
     tuple val(meta), path("*.high_confidence_somatic.vcf"), emit: high_conf_sv
@@ -26,11 +29,15 @@ process GRIDSS_GRIDSSSOMATICFILTER {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def pondir = pondir ? "--pondir ${pondir}" : ""
     def opts = rds ? "--opts ${rds}" : ""
+    def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
+    def ref = bwa_index ? "--ref ${fasta}" : ""
     def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
 
     """
+    ${bwa}
     gridss_somatic_filter \\
         --input $vcf \\
+        $ref \\
         $pondir \\
         $opts \\
         --output ${prefix}.high_confidence_somatic.vcf \\
@@ -38,6 +45,18 @@ process GRIDSS_GRIDSSSOMATICFILTER {
         -n 1 \\
         -t 2 \\
         $args
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        gridss: ${VERSION}
+    END_VERSIONS
+    """
+    stub:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+    """
+    touch ${prefix}.high_confidence_somatic.vcf
+    touch ${prefix}.all_somatic.vcf
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

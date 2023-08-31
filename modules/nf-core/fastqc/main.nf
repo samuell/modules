@@ -30,6 +30,7 @@ process FASTQC {
         [ -f "\${new_name}" ] || ln -s \$old_name \$new_name
     done
 
+
     fastqc \\
         $args \\
         --threads $task.cpus \\

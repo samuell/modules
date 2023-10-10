@@ -45,7 +45,8 @@ process KRAKEN2_KRAKEN2 {
         $readclassification_option \\
         $paired \\
         $args \\
-        $reads
+        $reads; \\
+        true
 
     $compress_reads_command
 
